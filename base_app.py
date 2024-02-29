@@ -32,6 +32,9 @@ import pandas as pd
 news_vectorizer = open("resources/tfidfvect.pkl","rb")
 tweet_cv = joblib.load(news_vectorizer) # loading your vectorizer from the pkl file
 
+news_vectorizer = open("Modelb.pkl","rb")
+tweet_cv = joblib.load(news_vectorizer) # loading your vectorizer from the pkl file
+
 # Load your raw data
 raw = pd.read_csv("resources/train.csv")
 
@@ -42,18 +45,21 @@ def main():
 	# Creates a main title and subheader on your page -
 	# these are static across all pages
 	st.title("Tweet Classifer")
+	st.title("Lead Engine")
 	st.subheader("Climate change tweet classification")
 
 	# Creating sidebar with selection box -
 	# you can create multiple pages this way
-	options = ["Prediction", "Information"]
-	selection = st.sidebar.selectbox("Choose Option", options)
+	options = ["Prediction", "Information", "About Us", "Twitter", "Sentiments"]
+	selection = st.sidebar.selectbox("Options", options)
 
 	# Building out the "Information" page
 	if selection == "Information":
 		st.info("General Information")
 		# You can read a markdown file from supporting resources folder
 		st.markdown("Some information here")
+		st.markdown("We are Lead Engine")
+		st.image (IMG_6150.JPG)
 
 		st.subheader("Raw Twitter data and label")
 		if st.checkbox('Show raw data'): # data is hidden if box is unchecked
@@ -61,7 +67,7 @@ def main():
 
 	# Building out the predication page
 	if selection == "Prediction":
-		st.info("Prediction with ML Models")
+		st.info("Prediction with ML Models today")
 		# Creating a text box for user input
 		tweet_text = st.text_area("Enter Text","Type Here")
 
@@ -71,6 +77,10 @@ def main():
 			# Load your .pkl file with the model of your choice + make predictions
 			# Try loading in multiple models to give the user a choice
 			predictor = joblib.load(open(os.path.join("resources/Logistic_regression.pkl"),"rb"))
+			prediction = predictor.predict(vect_text)
+			predictor = joblib.load(open(os.path.join("resources/linear_svc_model.pkl"),"rb"))
+			prediction = predictor.predict(vect_text)
+			predictor = joblib.load(open(os.path.join("resources/multinomial_nb_model.pkl"),"rb"))
 			prediction = predictor.predict(vect_text)
 
 			# When model has successfully run, will print prediction
