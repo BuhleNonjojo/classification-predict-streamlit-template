@@ -49,7 +49,7 @@ def main():
 
 	# Creating sidebar with selection box -
 	# you can create multiple pages this way
-	options = ["Prediction", "Information", "About Us" "Twitter" "Sentiments"]
+	options = ["Prediction", "Information", "About Us", "Twitter","Sentiments"]
 	selection = st.sidebar.selectbox("Options", options)
 
 	# Building out the "Information" page
