@@ -25,8 +25,7 @@
 
 import streamlit as st
 import joblib,os
-from itertools import count
-from symbol import return_stmt
+
 
 
 # Data dependencies
@@ -39,9 +38,8 @@ import pickle
 import re
 from PIL import Image
 
-# Text Processing Libraries
+# Text Processing Libraries.
 
-import contractions  
 import emoji  
 from nltk.corpus import stopwords  
 from nltk.stem import WordNetLemmatizer  
