@@ -626,8 +626,8 @@ def main():
 		# Director 
 		col1, col2 = st.columns([1, 6])
 		with col1:
-			image_k = Image.open('resources/imgs/IMG_6150.JPG')
-			st.image(image_k, use_column_width=True,caption = 'Director: Buhle Nonjojo')
+		image_k = Image.open('resources/imgs/IMG_6150.JPG')
+		st.image(image_k, use_column_width=True,caption = 'Director: Buhle Nonjojo')
 
 		
         # Open the image using PIL to allow for advanced manipulation
@@ -646,32 +646,32 @@ def main():
 		# Business Intelligence Developer
 		col1, col2 = st.columns([1, 6])
 		with col1:
-			image_m = Image.open('resources/imgs/20240221_084117.jpg')
-			st.image(image_m, use_column_width=True, caption = 'BI Developer: Koketso Mahlangu')
+		image_m = Image.open('resources/imgs/20240221_084117.jpg')
+		st.image(image_m, use_column_width=True, caption = 'BI Developer: Koketso Mahlangu')
 
 		# Data Analyst
 		col1, col2 = st.columns([1, 6])
 		with col1:
-			image_h = Image.open('resources/imgs/IMG_5666.jpg')
-			st.image(image_h, use_column_width=True, caption = 'Data Analyst: Ngcebo Khumalo')
+		image_h = Image.open('resources/imgs/IMG_5666.jpg')
+		st.image(image_h, use_column_width=True, caption = 'Data Analyst: Ngcebo Khumalo')
 		
 		# Data Scientist
 		col1, col2 = st.columns([1, 6])
 		with col1:
-			image_t = Image.open('resources/imgs/IMG_1707418875180.jpg')
-			st.image(image_t, use_column_width=True, caption = 'Data Scientist: Maliviwe Mahambi')
+		image_t = Image.open('resources/imgs/IMG_1707418875180.jpg')
+		st.image(image_t, use_column_width=True, caption = 'Data Scientist: Maliviwe Mahambi')
 
 		# Machine Learning Engineer
 		col1, col2 = st.columns([1, 6])
 		with col1:
-			image_kg = Image.open('')
-			st.image(image_kg, use_column_width=True, caption = 'ML Engineer: Noluthando Mtshali')
+		image_kg = Image.open('')
+		st.image(image_kg, use_column_width=True, caption = 'ML Engineer: Noluthando Mtshali')
 
 		# Data Engineer
 		col1, col2 = st.columns([1, 6])
 		with col1:
-			image_i = Image.open('resources/imgs/IMG_2911.jpg')
-			st.image(image_i, use_column_width=True, caption = 'Data Engineer: Onkarabile Maele')
+		image_i = Image.open('resources/imgs/IMG_2911.jpg')
+		st.image(image_i, use_column_width=True, caption = 'Data Engineer: Onkarabile Maele')
 
 
 	# Building out the "Information" page
