@@ -600,7 +600,7 @@ def main():
 	# Creating sidebar with selection box -
 	# you can create multiple pages this way
 		
-   image = Image.open('resources/Blue White Creative Professional Modern Business Agency Pitch Deck Presentation Template (2).png')
+       image = Image.open('resources/Blue White Creative Professional Modern Business Agency Pitch Deck Presentation Template (2).png')
 
 	 col1, col2 = st.columns([3, 3])
 	with col1:
