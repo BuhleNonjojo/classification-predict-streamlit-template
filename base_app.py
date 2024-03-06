@@ -40,7 +40,6 @@ from PIL import Image
 
 # Text Processing Libraries.
 
-import emoji  
 from nltk.corpus import stopwords  
 from nltk.stem import WordNetLemmatizer  
 from nltk import download as nltk_download  
