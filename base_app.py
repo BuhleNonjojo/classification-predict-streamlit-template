@@ -598,8 +598,10 @@ def main():
 	
 	# Fix indentation for image opening and ensure correct column usage
 
-		st.title("Lead Engine")
-		st.title("Twitter Sentiment Classifier App")
+	st.title("Lead Engine")
+	st.title("Twitter Sentiment Classifier App")
+	st.image('resources/Blue White Creative Professional Modern Business Agency Pitch Deck Presentation Template (2).png')
+	
 		
 	# Creating sidebar with selection box -
 	# you can create multiple pages this way
