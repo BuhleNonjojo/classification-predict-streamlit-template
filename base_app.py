@@ -597,16 +597,17 @@ def main():
 	# these are static across all pageS
 	
 	# Fix indentation for image opening and ensure correct column usage
-image = Image.open('resources/Blue White Creative Professional Modern Business Agency Pitch Deck Presentation Template (2).png')
+    image = Image.open('resources/Blue White Creative Professional Modern Business Agency Pitch Deck Presentation Template (2).png')
 
-col1, col2 = st.columns([3, 3])  # Create columns with appropriate proportions
+    col1, col2 = st.columns([3, 3])  # Create columns with appropriate proportions
 
-with col1:
-    st.image(image, use_column_width=True)  # Display image in column 1 using full width
+    with col1:
+        st.image(image, use_column_width=True)  # Display image in column 1 using full width
 
-with col2:
-    st.title("Lead Engine")  # Display title in column 2
-    st.title("Twitter Sentiment Classifier App")
+    with col2:
+        st.title("Lead Engine")  # Display title in column 2
+        st.title("Twitter Sentiment Classifier App")
+
 	# Creating sidebar with selection box -
 	# you can create multiple pages this way
 		
