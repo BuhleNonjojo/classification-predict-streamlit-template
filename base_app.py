@@ -596,68 +596,76 @@ def main():
 	# Creates a main title and subheader on your page -
 	# these are static across all pageS
 	
-	# Fix indentation for image opening and ensure correct column usage
-
-	st.title("Lead Engine")
-	st.title("Twitter Sentiment Classifier App")
-	st.image('resources/Blue White Creative Professional Modern Business Agency Pitch Deck Presentation Template (2).png')
 	
-		
 	# Creating sidebar with selection box -
 	# you can create multiple pages this way
 		
+   image = Image.open('resources/Blue White Creative Professional Modern Business Agency Pitch Deck Presentation Template (2).png')
+
+	 col1, col2 = st.columns([3, 3])
+	with col1:
+		st.image(image, use_column_width=True)
+	with col2:
+		st.title('Lead Engine')
+	    st.title("Twitter Sentiment Classifier App")
+	
+	#add more text
+
+	# Creating sidebar with selection box -
+	# you can create multiple pages this way
+
 	st.sidebar.title('App Navigation')
 
 	options = ["Home", "About Us", "Information", "Cautions", "Explore The Data", "Predictions", "Contact Us"]
 	selection = st.sidebar.radio("Selections", options)
 
-	# Building out the home page
+# Building out the home page
 	if selection == "Home":
 		st.info('Welcome to Lead Engine (PTY) LTD ')
-		
-	# Building out the about us page
+
+#build out the "home" company page
 	if selection == "About Us":
-		st.title('Welcome to Lead Engine (PTY) LTD')
+		st.title ('Welcome to Lead Engine (PTY) LTD')
 		st.markdown("At Lead Engine, we're more than just a data management solution – we're your trusted partners in growth. We understand the challenges you face in today's ever-evolving business landscape. That's why we're dedicated to taking the burden of data management off your shoulders, freeing you to focus on what matters most: cultivating strong customer relationships and driving results.Our team of passionate experts doesn't just handle your data – they become an extension of your own. We meticulously ensure the accuracy and security of your information, allowing you to make data-driven decisions with confidence. Our expertise goes beyond data security; it's about unlocking the full potential of your customer data. We empower you to gain deeper insights into your customers' needs and behaviors, enabling you to personalize experiences and build lasting loyalty.Our ultimate goal isn't just to maximize your productivity or increase your profits in the short term. It's about future-proofing your business by providing the tools and insights you need to thrive in the ever-changing digital age. With Lead Engine as your partner, you'll be equipped to adapt to new trends, anticipate customer demands, and stay ahead of the competition.")
 		st.write('To access the codebase for this application, please visit the following GitHub repository: https://github.com/BuhleNonjojo/2309_Classification_NM3')
 
-		st.title('Meet the team')
+		st.subheader('Meet the team')
 
-		# Director 
+		#director 
 		col1, col2 = st.columns([1, 6])
 		with col1:
-		image_b=Image.open('resources/imgs/IMG_6150.JPG')
-		st.image(image_b, use_column_width=True,caption = 'Director: Buhle Nonjojo')
+			image_k = Image.open('resources/imgs/IMG_6150.JPG')
+			st.image(image_k, use_column_width=True,caption = 'Director: Buhle Nonjojo')
 
-		# Business Intelligence Developer
+		# assistant director
 		col1, col2 = st.columns([1, 6])
 		with col1:
-		image_m=Image.open('resources/imgs/20240221_084117.jpg')
-		st.image(image_m, use_column_width=True, caption = 'BI Developer: Koketso Mahlangu')
+			image_m = Image.open('resources/imgs/20240221_084117.jpg')
+			st.image(image_m, use_column_width=True, caption = 'BI Developer: Koketso Mahlangu')
 
-		# Data Analyst
-		col1, col2=st.columns([1, 6])
+		# data scientist 1
+		col1, col2 = st.columns([1, 6])
 		with col1:
-		image_h=Image.open('resources/imgs/IMG_5666.jpg')
-		st.image(image_h, use_column_width=True, caption = 'Data Analyst: Ngcebo Khumalo')
+			image_h = Image.open('resources/imgs/IMG_5666.jpg')
+			st.image(image_h, use_column_width=True, caption = 'Data Analyst: Ngcebo Khumalo')
 		
-		# Data Scientist
-		col1, col2=st.columns([1, 6])
-		with col1:
-		image_t=Image.open('resources/imgs/IMG_1707418875180.jpg')
-		st.image(image_t, use_column_width=True, caption = 'Data Scientist: Maliviwe Mahambi')
-
-		# Machine Learning Engineer
-		col1, col2=st.columns([1, 6])
-		with col1:
-		image_kg=Image.open('')
-		st.image(image_kg, use_column_width=True, caption = 'ML Engineer: Noluthando Mtshali')
-
-		# Data Engineer
+		# data scientist 2
 		col1, col2 = st.columns([1, 6])
 		with col1:
-		image_i = Image.open('resources/imgs/IMG_2911.jpg')
-		st.image(image_i, use_column_width=True, caption = 'Data Engineer: Onkarabile Maele')
+			image_t = Image.open('resources/imgs/IMG_1707418875180.jpg')
+			st.image(image_t, use_column_width=True, caption = 'Data Scientist: Maliviwe Mahambi')
+
+		# data scientist 3
+		col1, col2 = st.columns([1, 6])
+		with col1:
+			image_kg = Image.open('resources/imgs/WhatsApp_Image_2024-02-28_at_10.32.53_a4977d04.jpg')
+			st.image(image_kg, use_column_width=True, caption = 'ML Engineer: Noluthando Mtshali')
+
+		# data scientist 4
+		col1, col2 = st.columns([1, 6])
+		with col1:
+			image_i = Image.open('resources/imgs/IMG_2911.jpg')
+			st.image(image_i, use_column_width=True, caption = 'Data Engineer: Onkarabile Maele')
 
 
 	# Building out the "Information" page
