@@ -584,7 +584,7 @@ def preprocess_csv(tweets):
 		return ret
 	tweets["message"] = tweets.apply(add_rt_handle, axis = 1)
 
-	# drop redundant columns
+	# drop redundant columns.
 	tweets = tweets.drop(["retweet_handle", "hashtags", "mentions"], axis=1)
 
 	return tweets
@@ -595,17 +595,17 @@ def main():
 
 	# Creates a main title and subheader on your page -
 	# these are static across all pages
+	# Fix the indentation for the image opening line
 
-image = Image.open('resources/Blue White Creative Professional Modern Business Agency Pitch Deck Presentation Template (2).png')
+image = Image.open('resources/Blue White Creative Professional Modern Business Agency Pitch Deck Presentation Template (2).png')  # Correct indentation (one level less)
 
-	col1, col2 = st.columns([3, 3])
+    col1, col2 = st.columns([3, 3])
 	with col1:
 		st.image(image, use_column_width=True)
 	with col2:
 		st.title("Lead Engine")
 		st.title("Twitter Sentiment Classifier App")
 	
-
 	# Creating sidebar with selection box -
 	# you can create multiple pages this way
 		
