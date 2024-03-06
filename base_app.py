@@ -600,10 +600,7 @@ def main():
 
 		st.title("Lead Engine")
 		st.title("Twitter Sentiment Classifier App")
-		image = Image.open('resources/Blue White Creative Professional Modern Business Agency Pitch Deck Presentation Template (2).png')
-		col1, col2 = st.columns([3, 3])
-	    with col1:
-		st.image(image, use_column_width=True)
+		
 	# Creating sidebar with selection box -
 	# you can create multiple pages this way
 		
