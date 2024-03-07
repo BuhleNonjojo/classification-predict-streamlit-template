@@ -710,8 +710,8 @@ def main():
 		st.markdown("Furthermore, there is some mentions that are more prominent in certain classes than others. Take @LeoDiCaprio for example, which features heavily in both pro-climate change as well as neutral towards climate change sentiment, but is not represented in the other two categories. This indicates that this feature could be beneficial for categorizing our data, and should remain within the dataset.")		
  
 	# Building out the "Model Explanations" page
-	if selection == "Model Explainations":
-		st.info("Learn more about our models")
+	if selection == "Model Explanations":
+		st.info("Learning more about our models")
 
 		st.subheader("Logistic Regression")
 		st.markdown('Logistic regression is a classification algorithm used to predict the probability of a binary outcome based on one or more input features. It models the relationship between the input variables and the probability of the outcome belonging to a particular class. Logistic regression uses the logistic function (also known as the sigmoid function) to map the output of a linear combination of the input features to a value between 0 and 1, representing the probability of belonging to the positive class.')
