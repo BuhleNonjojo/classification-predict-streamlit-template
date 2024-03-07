@@ -832,6 +832,24 @@ def main():
 			# more human interpretable.
 			st.success("Text Categorized as: {}".format(prediction))
 
+
+	if selection=="Explore The Data":
+	    opt = st.radio('Plot  type:',['Bar', 'Pie'])
+		if opt=='Bar':
+			st.markdown('<h3>Show sentiment occurance dataset</h3>',unsafe_allow_html=True)
+			xx = raw['sentiment'].value_counts()
+			st.bar_chart(xx)
+		elif opt =="Pie":
+			st.markdown('<h3>Pie chart for percentage of each sentiment on dataset</h3>',unsafe_allow_html=True)
+			fig1, ax1 = plt.subplots()
+			ax1.pie(raw['sentiment'].value_counts(),labels = ["Pro","News","Neutral","Anti"], autopct='%1.1f%%',shadow=True, startangle=90)
+			ax1.axis('equal')
+			ax1.set_facecolor("black")  # Equal aspect ratio ensures that pie is drawn as a circle.
+			ax1.legend()
+			fig1.patch.set_alpha(0)
+			ax1.xaxis.label.set_color('red')
+			st.pyplot(fig1)
+
 # Required to let Streamlit instantiate our web app.  
 if __name__ == '__main__':
 	main()
