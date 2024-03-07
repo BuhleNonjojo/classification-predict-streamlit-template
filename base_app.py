@@ -678,7 +678,6 @@ def main():
 
 		if selection == 'Dataset':
 			st.subheader('Overview of dataset:')
-			st.write(df_train.head(10))
 			st.info("The dataset consists of three columns namely: Sentiment, Tweet and Tweet ID")
 			st.markdown("The collection of this data was funded by a Canada Foundation for Innovation JELF Grant to Chris Bauch, University of Waterloo. The dataset aggregates tweets pertaining to climate change collected between Apr 27, 2015 and Feb 21, 2018. In total, 43,943 tweets were collected. Each tweet is labelled as one of 4 classes.")
 		if selection == 'Distribution of data per sentiment class':
