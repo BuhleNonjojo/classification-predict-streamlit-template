@@ -824,27 +824,27 @@ def main():
 					predicton= joblib.load(open(os.path.join("resources/DT.pkl"),"rb"))
 
 				if selection == "Linear Support Vector Classifier":
-					predictor = pickle.load(open("resources/linear_svc_model.pkl,'rb"))
+					predictor= pickle.load(open("resources/linear_svc_model.pkl,'rb"))
 					predicton= joblib.load(open(os.path.join("resources/linear_svc_model.pkl"),"rb"))
 
 				if selection == "Random Tree Forest Classifier":
-					predictor = pickle.load(open("resources/.RFC.pkl",'rb'))
+					predictor= pickle.load(open("resources/.RFC.pkl",'rb'))
 					predicton= joblib.load(open(os.path.join("resources/.RFC.pkl"),"rb"))
 
 				if selection == "Support Vector Gemma Classifier":
-					predictor None = pickle.load(open("resources/svc_gemma.pkl",'rb'))
+					predictor = pickle.load(open("resources/svc_gemma.pkl",'rb'))
 					predicton= joblib.load(open(os.path.join("resources/svc_gemma.pkl"),"rb"))
 
 				if selection == "Support Vector Poly Classifier":
-					predictor = None = pickle.load(open("resources/svc_poly.pkl",'rb'))
+					predictor= pickle.load(open("resources/svc_poly.pkl",'rb'))
 					predicton= joblib.load(open(os.path.join("resources/svc_poly.pkl"),"rb"))
 
 				if selection == "Multinomial Naive Bayes Classifier":
-					predictor = None = pickle.load(open("resources/multinomial_nb_model.pkl",'rb'))
+					predictor = pickle.load(open("resources/multinomial_nb_model.pkl",'rb'))
 					predicton= joblib.load(open(os.path.join("resources/multinomial_nb_model.pkl"),"rb"))
 
 				if selection == "XGBoost Classifier":
-					predictor = None = pickle.load(open('resources/.XGB.pkl'))
+					predictor= pickle.load(open('resources/.XGB.pkl'))
 					predicton= joblib.load(open(os.path.join("resources/.XGB.pkl"),"rb"))
 
 			# When model has successfully run, will print prediction
