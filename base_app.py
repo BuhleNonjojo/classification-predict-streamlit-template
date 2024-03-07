@@ -610,7 +610,7 @@ def main():
 		
 	st.sidebar.title('App Navigation')
 
-	options = ["About Us", "Information", "Explore The Data","Model Explanantions","Predictions", "Contact Us"]
+	options = ["About Us", "Information", "Explore The Data","Model Explanations","Predictions", "Contact Us"]
 	selection = st.sidebar.radio("Selectons", options)
 
 	# Building out the home company page
