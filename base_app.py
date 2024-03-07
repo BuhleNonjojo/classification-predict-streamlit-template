@@ -779,7 +779,7 @@ def main():
 			# Creating a text box for user input
 			tweet_text = st.text_area("Enter tweet here","Type Here")
 
-			options = ["Logistic Regression Classifier", "Linear Support Vector Classifier"] #"XGBoost Classifier", "CatBoost Classfier",  " Multinomial Naive Bayes Classifier"
+			options = ["Logistic Regression Classifier","CatBoost Classfier", "Decision Tree Classifier","Linear Support Vector Classifier","Random Tree Forest Classifier","Support Vector Gemma Classifier", "Support Vector Poly Classifier", " Multinomial Naive Bayes Classifier", "XGBoost Classifier"] 
 			selection = st.selectbox("Choose Your Model", options)
 
 			if st.button("Classify Tweet"):
@@ -802,8 +802,40 @@ def main():
 				predictor = None
 				X_pred = None
 				if selection == "Logistic Regression Classifier":
-					lr = pickle.load(open('\resources\LogisticRegression.pkl','rb'))
-					predicton= joblib.load(open(os.path.join("resources/LogisticRegression.pkl"),"rb"))
+					lr = pickle.load(open("resources/Logistic_regression.pkl",'rb'))
+					predicton= joblib.load(open(os.path.join("resources/Logistic_regression.pkl"),"rb"))
+
+				if selection == "CatBoost Classfier":
+					cb = pickle.load(open("resources/.CB.pkl",'rb'))
+					predicton= joblib.load(open(os.path.join("resources/.CB.pkl"),"rb"))
+
+				if selection == "Decision Tree Classifier":
+					dt = pickle.load(open("resources/DT.pkl",'rb'))
+					predicton= joblib.load(open(os.path.join("resources/DT.pkl"),"rb"))
+
+				if selection == "Linear Support Vector Classifier":
+					lsv = pickle.load(open("resources/linear_svc_model.pkl,'rb"))
+					predicton= joblib.load(open(os.path.join("resources/linear_svc_model.pkl"),"rb"))
+
+				if selection == "Random Tree Forest Classifier":
+					rt = pickle.load(open("resources/.RFC.pkl",'rb'))
+					predicton= joblib.load(open(os.path.join("resources/.RFC.pkl"),"rb"))
+
+				if selection == "Support Vector Gemma Classifier":
+					svg = pickle.load(open("resources/svc_gemma.pkl",'rb'))
+					predicton= joblib.load(open(os.path.join("resources/svc_gemma.pkl"),"rb"))
+
+				if selection == "Support Vector Poly Classifier":
+					svp = pickle.load(open("resources/svc_poly.pkl",'rb'))
+					predicton= joblib.load(open(os.path.join("resources/svc_poly.pkl"),"rb"))
+
+				if selection == "Multinomial Naive Bayes Classifier":
+					mnb = pickle.load(open("resources/multinomial_nb_model.pkl",'rb'))
+					predicton= joblib.load(open(os.path.join("resources/multinomial_nb_model.pkl"),"rb"))
+
+				if selection == "XGBoost Classifier":
+					xgb = pickle.load(open('resources/.XGB.pkl'))
+					predicton= joblib.load(open(os.path.join("resources/.XGB.pkl"),"rb"))
 
 			# When model has successfully run, will print prediction
 			# You can use a dictionary or similar structure to make this output
@@ -817,7 +849,7 @@ def main():
 		st.markdown("Telephone: +123-456-7890.")
 		st.markdown("Email: contact@leadengine.com")
 		st.markdown('Location : 123 Anywhere St., Any City, ST 12345')
-		st.write('We are just a email or phone call or vist away.+3')
+		st.write('We are just a email or phone call or vist away.')
 
 # Required to let Streamlit instantiate our web app.  
 if __name__ == '__main__':
