@@ -756,7 +756,7 @@ def main():
 		st.markdown('Once the optimal hyperplane is found in the higher-dimensional space, the model effectively maps it back to the original feature space. This creates a non-linear decision boundary in the original space, allowing for classification of data points that couldn''t be separated linearly before.')
 		st.markdown(' Interestingly, SVC(poly) avoids explicitly performing the high-dimensional mapping for every data point during training and prediction. Instead, it utilizes a technique called the kernel trick. This trick allows the model to work directly with the data points in the original space while still leveraging the benefits of the higher-dimensional representation, making it computationally efficient even for large datasets. In essence, SVC(poly) overcomes the limitation of linear separation by transforming data into a higher-dimensional space, finding an optimal hyperplane there, and mapping it back to the original space to create a non-linear decision boundary for classification in various machine learning tasks.')
 		
-		st.subheader("MultinomiMal Naives Bayes Classifier")
+		st.subheader("Multinominal Naives Bayes Classifier")
 		st.markdown('Naive Bayes is a probabilistic classification model based on Bayes theorem, which calculates the probability of a class given the input features. It assumes that the features are conditionally independent, meaning that the presence of one feature does not affect the presence of another feature. Despite this simplifying assumption, Naive Bayes can be surprisingly effective in many real-world scenarios.')
 		st.markdown('Multinomial Naive Bayes is a variant of Naive Bayes that is specifically designed for classification tasks with discrete features. It is commonly used for text classification, where the input features are typically word frequencies or counts. Unlike Gaussian Naive Bayes, which assumes a Gaussian distribution for continuous features, Multinomial Naive Bayes assumes a multinomial distribution for discrete features..')
 		st.markdown('In Multinomial Naive Bayes, the model learns the probability distribution of each feature given the class label. It estimates the probabilities using the training data, where the feature values represent the frequencies or counts of each feature in the documents of each class. To predict the class of a new instance, the model calculates the likelihood of observing the given feature values for each class and combines it with the prior probability of the class using Bayes theorem. The class with the highest probability is chosen as the predicted class.')
@@ -768,8 +768,8 @@ def main():
 		st.markdown('Additionally, XGBoost incorporates several regularization techniques, such as shrinkage (learning rate) and tree pruning, to prevent overfitting and improve generalization. It also supports parallelization and distributed computing, making it efficient for training on large datasets.')
 		st.markdown('XGBoost boasts exceptional predictive performance and accuracy, and is robust to outliers in the data. It also supports feature importance estimation, allowing for better understanding of feature contributions. It does however require careful hyperparameter tuning for optimal performance. It is also computationally intensive, especially with a large number of trees and complex datasets.')
 
-	# Building out the predication page
-	if selection == 'Prediction':
+	# Building out the Predictions page
+	if selection == 'Predictions':
 		st.write('Predict the sentiment of each twitter using various models with each tweet falling into one of 4 categories: anti-man made climate change, neutral, pro-man made climate change and lastly, whether a tweet represent factual news!')
 	
 		pred_type = st.sidebar.selectbox("Predict sentiment of a single tweet or submit a csv for multiple tweets", ('Single Tweet', 'Multiple Tweets'))
