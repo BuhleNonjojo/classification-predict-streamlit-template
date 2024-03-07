@@ -817,7 +817,7 @@ if st.button("Classify"):
                      	'[2]': "This tweet refers to factual news about climate change"}
 			# Load your .pkl file with the model of your choice + make predictions
 			# Try loading in multiple models to give the user a choice
-
+selection = st.selectbox
 if selection == "Logistic Regression Classifier":
 	#lr = pickle.load(open('\resources\LogisticRegression.pkl','rb'))
     predictor = joblib.load(open(os.path.join("resources/LogisticRegression.pkl"),"rb"))
