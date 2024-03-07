@@ -781,92 +781,55 @@ def main():
 			st.markdown('Additionally, XGBoost incorporates several regularization techniques, such as shrinkage (learning rate) and tree pruning, to prevent overfitting and improve generalization. It also supports parallelization and distributed computing, making it efficient for training on large datasets.')
 			st.markdown('XGBoost boasts exceptional predictive performance and accuracy, and is robust to outliers in the data. It also supports feature importance estimation, allowing for better understanding of feature contributions. It does however require careful hyperparameter tuning for optimal performance. It is also computationally intensive, especially with a large number of trees and complex datasets.')
 
-	# Building out the Predication page
-			
-	if selection == "Prediction":
-		st.info("Prediction with ML Models")
-	st.write('Predict the sentiment of each twitter using various models with each tweet falling into one of 4 categories: anti-man made climate change, neutral, pro-man made climate change and lastly, whether a tweet represent factual news!')
+	# Building out the predication page
+	if selection == 'Prediction':
+		st.write('Predict the sentiment of each twitter using various models with each tweet falling into one of 4 categories: anti-man made climate change, neutral, pro-man made climate change and lastly, whether a tweet represent factual news!')
 	
-	pred_type = st.sidebar.selectbox("Predict sentiment of a single tweet or submit a csv for multiple tweets", ('Single Tweet', 'Multiple Tweets'))
+		pred_type = st.sidebar.selectbox("Predict sentiment of a single tweet or submit a csv for multiple tweets", ('Single Tweet', 'Multiple Tweets'))
 
-	if pred_type == "Single Tweet":
-		# Creating a text box for user input
-		tweet_text = st.text_area("Enter Text","Type Here")
-	
-		options = ["Logistic Regression Classifier","CatBoost Classfier",'Decison Tree Classifier','Linear Support Vector Classifier','Multinomial Naives Bayes Classifier','Support Vector Classifier Gemma', 'Support Vector Classifier Poly' ] 
-		selection = st.selectbox("Choose Your Model", options)
+		if pred_type == "Single Tweet":
+			st.info("Prediction with ML Models")
+			# Creating a text box for user input
+			tweet_text = st.text_area("Enter tweet here","Type Here")
 
-if st.button("Classify"):
-    # Processing the tweet
-    vect_text = tweet_cv.transform([tweet_text]).toarray()  # Transform user input with vectorizer
+			options = ["Logistic Regression Classifier", "Linear Support Vector Classifier"] #"XGBoost Classifier", "CatBoost Classfier",  " Multinomial Naive Bayes Classifier"
+			selection = st.selectbox("Choose Your Model", options)
 
-    # Process single tweet using our preprocess_tweet() function
-    # ... (assuming preprocess_tweet() exists)
+			if st.button("Classify Tweet"):
+				#process single tweet using our preprocess_tweet() function
 
-    # Create dataframe for tweet (ensure four spaces for indentation)
-    text = [tweet_text]
-    df_tweet = pd.DataFrame(text, columns=['message'])
+				# create dataframe for tweet
+				text = [tweet_text]
+				df_tweet = pd.DataFrame(text, columns=['message'])
 
-    processed_tweet = preprocess_tweet(df_tweet)  # Maintain four spaces
+				processed_tweet = preprocess_tweet(df_tweet)
+				
+				# Create a dictionary for tweet prediction outputs
+				dictionary_tweets = {'[-1]': "A tweet refuting man-made climate change",
+                     				  '[0]': "A tweet neither supporting nor refuting the belief of man-made climate change",
+                     				  '[1]': "A pro climate change tweet",
+                     				  '[2]': "This tweet refers to factual news about climate change"}
 
-    
-			# Create a dictionary for tweet prediction outputs
-    dictionary_tweets = {'[-1]': "A tweet refuting man-made climate change",
-                     	'[0]': "A tweet neither supporting nor refuting the belief of man-made climate change",
-                     	'[1]': "A pro climate change tweet",
-                     	'[2]': "This tweet refers to factual news about climate change"}
-			# Load your .pkl file with the model of your choice + make predictions
-			# Try loading in multiple models to give the user a choice
-selection = st.selectbox
-if selection == "Logistic Regression Classifier":
-	#lr = pickle.load(open('\resources\LogisticRegression.pkl','rb'))
-    predictor = joblib.load(open(os.path.join("resources/LogisticRegression.pkl"),"rb"))
-    prediction = predictor.predict(vect_text)
-		
-if selection == "CatBoost Classfier":
-
-			predictor = joblib.load(open(os.path.join("resources/.CB.pkl"),"rb"))
-			prediction = predictor.predict(vect_text)
-
-if selection == "Decison Tree Classifier":
-
-			predictor = joblib.load(open(os.path.join("resources/DT.pkl"),"rb"))
-			prediction = predictor.predict(vect_text)
-
-if selection == "Linear Support Vector Classifier":
-
-			predictor = joblib.load(open(os.path.join("resources/linear_svc_model.pkl"),"rb"))
-			prediction = predictor.predict(vect_text)
-
-if selection == "Multinomial Naives Bayes Classifier":
-
-			predictor = joblib.load(open(os.path.join("resources/multinomial_nb_model.pkl"),"rb"))
-			prediction = predictor.predict(vect_text)
-
-if selection == "Support Vector Classifier Gemma":
-
-			predictor = joblib.load(open(os.path.join("resources/svc_gemma.pkl"),"rb"))
-			prediction = predictor.predict(vect_text)
-
-if selection == "Support Vector Classifier Poly":
-
-			predictor = joblib.load(open(os.path.join("resources/svc_poly.pkl"),"rb"))
-			prediction = predictor.predict(vect_text)
-
+				# Load your .pkl file with the model of your choice + make predictions
+				# Try loading in multiple models to give the user a choice
+				predictor = None
+				X_pred = None
+				if selection == "Logistic Regression Classifier":
+					lr = pickle.load(open('\resources\LogisticRegression.pkl','rb'))
+					predicton= joblib.load(open(os.path.join("resources/LogisticRegression.pkl"),"rb"))
 
 			# When model has successfully run, will print prediction
 			# You can use a dictionary or similar structure to make this output
 			# more human interpretable.
-			st.success("Text Categorized as: {}".format(prediction))
 
-	# Building out the Contact Us page
-if selection == "Contact Us":
+	# Building out the home company page
+	if selection == "Contact Us":
 		st.info('Lead Engine (PTY) LTD ')
 		st.markdown("Contact Us:")
-		st.markdown("Website: www.leadengine.com")
-		st.markdown("Telephone: +123-456-7890")
+		st.markdown("Website: www.leadengine.com.")
+		st.markdown("Telephone: +123-456-7890.")
 		st.markdown("Email: contact@leadengine.com")
-		st.markdown("Location : 123 Anywhere St., Any City, ST 12345")
+		st.markdown('Location : 123 Anywhere St., Any City, ST 12345')
 		st.write('We are just a email or phone call or vist away')
 
 # Required to let Streamlit instantiate our web app.  
