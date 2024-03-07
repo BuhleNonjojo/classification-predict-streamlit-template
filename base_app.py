@@ -729,23 +729,38 @@ def main():
 			st.info('Explain the inner workings of CatBoost model')
 			st.markdown('CatBoost is a machine learning model that tackles prediction tasks by combining multiple decision trees, a technique known as gradient boosting. Unlike some other models, CatBoost excels at handling data that includes categorical features, like text or zip codes.')
 			st.markdown('It achieves this by using a special technique called "Ordered Boosting" that analyzes these features directly, without needing to convert them into numerical codes first. This allows CatBoost to capture the relationships within the categories more effectively.')
+<<<<<<< HEAD
 			st.markdown('Additionally, CatBoost incorporates regularization methods to prevent the model from overfitting to the training data, ensuring it performs well on unseen examples.')
 			st.markdown('Overall, CatBoost\'s strength in handling categorical data, combined with its decision tree ensemble approach and effective regularization, makes it a powerful tool for various machine learning applications.')
+=======
+			st.markdown('Additionally, CatBoost incorporates regularization methods to prevent the model from overfitting to the training data, ensuring it performs well on unseen examples. ')
+                        st.markdown('Overall, CatBoost\'s strength in handling categorical data, combined with its decision tree ensemble approach and effective regularization, makes it a powerful tool for various machine learning applications.')
+>>>>>>> 64c66eb02a8e64b91979a5b2f7db531c2c5cfc24
 	
 		if selection == "Decision Tree Classifer":
 			st.info('Explain the inner workings of Logistic Regression model')
 			st.markdown('A decision tree model is a machine learning method that learns by creating a tree-like structure. This structure mimics a series of if-then-else questions, where each question splits the data into smaller and more specific groups.')
 			st.markdown('It starts at the root node, which represents the entire dataset. Here, the algorithm identifies the most important feature that best separates the data according to the target variable (like predicting whether an email is spam).')
 			st.markdown('The data is then split based on this feature, with branches leading to child nodes containing data that share a specific value of that feature.')
+<<<<<<< HEAD
 			st.markdown('This process continues at each child node, using different features to further divide the data until it reaches leaf nodes. These leaf nodes contain the final predictions, representing the most likely outcome based on the features used throughout the tree.')	
 	
+=======
+                        st.markdown('This process continues at each child node, using different features to further divide the data until it reaches leaf nodes. These leaf nodes contain the final predictions, representing the most likely outcome based on the features used throughout the tree.')
+		
+>>>>>>> 64c66eb02a8e64b91979a5b2f7db531c2c5cfc24
 		if selection == "Linear Support Vector Classifier":
 			st.info('Explain the inner workings of Logistic Regression model')
 			st.markdown('Linear Support Vector Classification (LinearSVC) is a variant of Support Vector Machines (SVMs) used for classification tasks. It employs a linear kernel to create a hyperplane in the high-dimensional feature space to separate different classes of data.')
 			st.markdown('Unlike other svms that might use various kernels, LinearSVC assumes a linear relationship between the features and the target variable. This model is robust and efficient in numerous applications, offering good performance even with less training data. However, its effectiveness can be sensitive to feature selection and requires careful preprocessing of the data.')
 			st.markdown('Key parameters include the C parameter, controlling the trade-off between a smooth decision boundary and classifying training points correctly. Despite its underlying assumption of a linear relationship, LinearSVC has proven to be versatile in its performance, with careful tuning and preprocessing.')
+<<<<<<< HEAD
 			st.markdown('Lastly unlike ost machine learning models, linear support vector machines offer a visually intuitive geometric interpretation by finding a hyperplane that maximizes the separation between data points in different classes, making them particularly interesting for their interpretability, efficiency, and fast training speeds, even though their application is limited to data that can be separated linearly.')
 
+=======
+                        st.markdown('Lastly unlike ost machine learning models, linear support vector machines offer a visually intuitive geometric interpretation by finding a hyperplane that maximizes the separation between data points in different classes, making them particularly interesting for their interpretability, efficiency, and fast training speeds, even though their application is limited to data that can be separated linearly.')
+	
+>>>>>>> 64c66eb02a8e64b91979a5b2f7db531c2c5cfc24
 		if selection == "Random Forest Classifier":
 			#st.info('Explain the inner workings of Random Forest model')
 			st.markdown('Random forest consists of a large number of individual decision trees that operate as an ensemble. Each individual tree in the random forest spits out a class prediction and the class with the most votes becomes our model\'s prediction. The reason behind is that a large number of relatively uncorrelated models (decision trees) operating as a group will outperform any of the individual constituent models. The low correlation between models is the key, with trees protecting each other from their individual errors(as long as they do not deviate in the same direction)')
@@ -768,8 +783,13 @@ def main():
 			st.markdown(' Interestingly, SVC(poly) avoids explicitly performing the high-dimensional mapping for every data point during training and prediction. Instead, it utilizes a technique called the kernel trick. This trick allows the model to work directly with the data points in the original space while still leveraging the benefits of the higher-dimensional representation, making it computationally efficient even for large datasets. In essence, SVC(poly) overcomes the limitation of linear separation by transforming data into a higher-dimensional space, finding an optimal hyperplane there, and mapping it back to the original space to create a non-linear decision boundary for classification in various machine learning tasks.')
 
 		if selection == "Multinomial Naives Bayes Classifier":
+<<<<<<< HEAD
 			#st.info('Explain the inner workings of Multinomial Naives Bayes model')
 			st.markdown('Naive Bayes is a probabilistic classification model based on Bayes theorem, which calculates the probability of a class given the input features. It assumes that the features are conditionally independent, meaning that the presence of one feature does not affect the presence of another feature. Despite this simplifying assumption, Naive Bayes can be surprisingly effective in many real-world scenarios.')
+=======
+			#st.info('Explain the inner workings of Multinominal Naives Bayes model')
+                        st.markdown('Naive Bayes is a probabilistic classification model based on Bayes theorem, which calculates the probability of a class given the input features. It assumes that the features are conditionally independent, meaning that the presence of one feature does not affect the presence of another feature. Despite this simplifying assumption, Naive Bayes can be surprisingly effective in many real-world scenarios.')
+>>>>>>> 64c66eb02a8e64b91979a5b2f7db531c2c5cfc24
 			st.markdown('Multinomial Naive Bayes is a variant of Naive Bayes that is specifically designed for classification tasks with discrete features. It is commonly used for text classification, where the input features are typically word frequencies or counts. Unlike Gaussian Naive Bayes, which assumes a Gaussian distribution for continuous features, Multinomial Naive Bayes assumes a multinomial distribution for discrete features.')
 			st.markdown('In Multinomial Naive Bayes, the model learns the probability distribution of each feature given the class label. It estimates the probabilities using the training data, where the feature values represent the frequencies or counts of each feature in the documents of each class. To predict the class of a new instance, the model calculates the likelihood of observing the given feature values for each class and combines it with the prior probability of the class using Bayes theorem. The class with the highest probability is chosen as the predicted class.')
 			st.markdown('The key difference between this model, and the Gaussian Naive Bayes is in the assumptions made about the data. Multinomial Naive Bayes assumes a multinomial distribution for discrete features, whereas Gaussian Naive Bayes assumes a Gaussian distribution for continuous features. Multinomial Naive Bayes is appropriate for discrete features, such as word counts, while Gaussian Naive Bayes is suitable for continuous or normally distributed features.This model is generally known to be efficient, even in large feature spaces. It also works well with unbalanced data, which is handy in our case. It is also able to handle multiclass classification problems, which our classification falls into.')
