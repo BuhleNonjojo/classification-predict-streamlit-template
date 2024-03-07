@@ -796,45 +796,61 @@ def main():
 		options = ["Logistic Regression Classifier","CatBoost Classfier",'Decison Tree Classifier','Linear Support Vector Classifier','Multinomial Naives Bayes Classifier','Support Vector Classifier Gemma', 'Support Vector Classifier Poly' ] 
 		selection = st.selectbox("Choose Your Model", options)
 
-		if st.button("Classify"):
-		   vect_text = tweet_cv.transform([tweet_text]).toarray()
-			# Transforming user input with vectorizer
-			# Process single tweet using our preprocess_tweet() function
+if st.button("Classify"):
+    # Processing the tweet
+    vect_text = tweet_cv.transform([tweet_text]).toarray()  # Transform user input with vectorizer
 
-			# create dataframe for tweet
-			text = [tweet_text]
-			df_tweet = pd.DataFrame(text, columns=['message'])
+    # Process single tweet using our preprocess_tweet() function
+    # ... (assuming preprocess_tweet() exists)
 
-			processed_tweet = preprocess_tweet(df_tweet)
-				
+    # Create dataframe for tweet (ensure four spaces for indentation)
+    text = [tweet_text]
+    df_tweet = pd.DataFrame(text, columns=['message'])
+
+    processed_tweet = preprocess_tweet(df_tweet)  # Maintain four spaces
+
+    
 			# Create a dictionary for tweet prediction outputs
-			dictionary_tweets = {'[-1]': "A tweet refuting man-made climate change",
-                     			  '[0]': "A tweet neither supporting nor refuting the belief of man-made climate change",
-                     			  '[1]': "A pro climate change tweet",
-                     			  '[2]': "This tweet refers to factual news about climate change"}
+    dictionary_tweets = {'[-1]': "A tweet refuting man-made climate change",
+                     	'[0]': "A tweet neither supporting nor refuting the belief of man-made climate change",
+                     	'[1]': "A pro climate change tweet",
+                     	'[2]': "This tweet refers to factual news about climate change"}
 			# Load your .pkl file with the model of your choice + make predictions
 			# Try loading in multiple models to give the user a choice
-		   predictor = None
-		   X_pred = None
-		   
-        if selection == "Logistic Regression Classifier":
-			#lr = pickle.load(open('\resources\LogisticRegression.pkl','rb'))
-			predictor = joblib.load(open(os.path.join("resources/LogisticRegression.pkl"),"rb"))
-			prediction = predictor.predict(vect_text)
+
+if selection == "Logistic Regression Classifier":
+	#lr = pickle.load(open('\resources\LogisticRegression.pkl','rb'))
+    predictor = joblib.load(open(os.path.join("resources/LogisticRegression.pkl"),"rb"))
+    prediction = predictor.predict(vect_text)
+		
+if selection == "CatBoost Classfier":
 
 			predictor = joblib.load(open(os.path.join("resources/.CB.pkl"),"rb"))
 			prediction = predictor.predict(vect_text)
 
+if selection == "Decison Tree Classifier":
+
+			predictor = joblib.load(open(os.path.join("resources/DT.pkl"),"rb"))
+			prediction = predictor.predict(vect_text)
+
+if selection == "Linear Support Vector Classifier":
+
 			predictor = joblib.load(open(os.path.join("resources/linear_svc_model.pkl"),"rb"))
 			prediction = predictor.predict(vect_text)
+
+if selection == "Multinomial Naives Bayes Classifier":
 
 			predictor = joblib.load(open(os.path.join("resources/multinomial_nb_model.pkl"),"rb"))
 			prediction = predictor.predict(vect_text)
 
+if selection == "Support Vector Classifier Gemma":
+
 			predictor = joblib.load(open(os.path.join("resources/svc_gemma.pkl"),"rb"))
 			prediction = predictor.predict(vect_text)
 
-			predictor = joblib.load(open(os.path.join("resources/svc_gemma.pkl"),"rb"))
+if selection == "Support Vector Classifier Poly":
+
+			predictor = joblib.load(open(os.path.join("resources/svc_poly.pkl"),"rb"))
 			prediction = predictor.predict(vect_text)
 
 
@@ -844,7 +860,7 @@ def main():
 			st.success("Text Categorized as: {}".format(prediction))
 
 	# Building out the Contact Us page
-	if selection == "Contact Us":
+if selection == "Contact Us":
 		st.info('Lead Engine (PTY) LTD ')
 		st.markdown("Contact Us:")
 		st.markdown("Website: www.leadengine.com")
