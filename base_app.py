@@ -33,6 +33,7 @@ import os
 
 # Data dependencies
 
+import contractions
 import emoji 
 import pandas as pd
 import numpy as np
