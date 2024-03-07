@@ -850,6 +850,16 @@ def main():
 			ax1.xaxis.label.set_color('red')
 			st.pyplot(fig1)
 
+	# Building out the Contact Us page
+	if selection == "Contact Us":
+		st.info('Lead Engine (PTY) LTD ')
+		st.markdown("Contact Us:")
+		st.markdown("Website: www.leadengine.com")
+		st.markdown("Telephone: +123-456-7890")
+		st.markdown("Email: contact@leadengine.com")
+		st.markdown("Location : 123 Anywhere St., Any City, ST 12345)
+		st.write('We are just a email or phone call or vist away')
+
 # Required to let Streamlit instantiate our web app.  
 if __name__ == '__main__':
 	main()
