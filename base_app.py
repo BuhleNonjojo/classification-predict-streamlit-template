@@ -715,7 +715,6 @@ def main():
  
 	# Building out the "Model Explanations" page
 	if selection == "Model Explainations":
-		options = ['Logistic Regression','CatBoost Classifer','Decison Tree Classifier','Linear Support Vector Classifier','Random Forest Classifier','Multinomial Naives Bayes Classifier','Support Vector Classifier Gemma', 'Support Vector Classifier Poly','XGBoost Classifier']
 		st.info("Learn more about our models")
 
 		st.subheader("Logistic Regression")
