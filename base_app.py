@@ -25,6 +25,9 @@
 
 import streamlit as st
 import joblib,os
+import pickle
+import joblib
+import os
 
 
 
@@ -784,9 +787,13 @@ def main():
 
 			options = ["Logistic Regression Classifier","CatBoost Classfier", "Decision Tree Classifier","Linear Support Vector Classifier","Random Tree Forest Classifier","Support Vector Gemma Classifier", "Support Vector Poly Classifier", " Multinomial Naive Bayes Classifier", "XGBoost Classifier"] 
 			selection = st.selectbox("Choose Your Model", options)
-
+			# Transforming user input with vectorizer
+			vect_text = tweet_cv.transform([tweet_text]).toarray()
+			# Load your .pkl file with the model of your choice + make predictions
+			# Try loading in multiple models to give the user a choice
+			
 			if st.button("Classify Tweet"):
-				#process single tweet using our preprocess_tweet() function
+				#process single tweet using our preprocess_tweet() functionn
 
 				# create dataframe for tweet
 				text = [tweet_text]
@@ -802,42 +809,42 @@ def main():
 
 				# Load your .pkl file with the model of your choice + make predictions
 				# Try loading in multiple models to give the user a choice
-				predictor = None
-				X_pred = None
+
+			
 				if selection == "Logistic Regression Classifier":
-					lr = pickle.load(open("resources/Logistic_regression.pkl",'rb'))
-					predicton= joblib.load(open(os.path.join("resources/Logistic_regression.pkl"),"rb"))
+					predictor= joblib.load(open(os.path.join("resources/Logistic_regression.pkl"),"rb"))
+					predicton= predictor.predict(vect_text)	
 
 				if selection == "CatBoost Classfier":
-					cb = pickle.load(open("resources/.CB.pkl",'rb'))
+					predictor= pickle.load(open("resources/.CB.pkl",'rb'))
 					predicton= joblib.load(open(os.path.join("resources/.CB.pkl"),"rb"))
 
 				if selection == "Decision Tree Classifier":
-					dt = pickle.load(open("resources/DT.pkl",'rb'))
+					predictor = pickle.load(open("resources/DT.pkl",'rb'))
 					predicton= joblib.load(open(os.path.join("resources/DT.pkl"),"rb"))
 
 				if selection == "Linear Support Vector Classifier":
-					lsv = pickle.load(open("resources/linear_svc_model.pkl,'rb"))
+					predictor = pickle.load(open("resources/linear_svc_model.pkl,'rb"))
 					predicton= joblib.load(open(os.path.join("resources/linear_svc_model.pkl"),"rb"))
 
 				if selection == "Random Tree Forest Classifier":
-					rt = pickle.load(open("resources/.RFC.pkl",'rb'))
+					predictor = pickle.load(open("resources/.RFC.pkl",'rb'))
 					predicton= joblib.load(open(os.path.join("resources/.RFC.pkl"),"rb"))
 
 				if selection == "Support Vector Gemma Classifier":
-					svg = pickle.load(open("resources/svc_gemma.pkl",'rb'))
+					predictor None = pickle.load(open("resources/svc_gemma.pkl",'rb'))
 					predicton= joblib.load(open(os.path.join("resources/svc_gemma.pkl"),"rb"))
 
 				if selection == "Support Vector Poly Classifier":
-					svp = pickle.load(open("resources/svc_poly.pkl",'rb'))
+					predictor = None = pickle.load(open("resources/svc_poly.pkl",'rb'))
 					predicton= joblib.load(open(os.path.join("resources/svc_poly.pkl"),"rb"))
 
 				if selection == "Multinomial Naive Bayes Classifier":
-					mnb = pickle.load(open("resources/multinomial_nb_model.pkl",'rb'))
+					predictor = None = pickle.load(open("resources/multinomial_nb_model.pkl",'rb'))
 					predicton= joblib.load(open(os.path.join("resources/multinomial_nb_model.pkl"),"rb"))
 
 				if selection == "XGBoost Classifier":
-					xgb = pickle.load(open('resources/.XGB.pkl'))
+					predictor = None = pickle.load(open('resources/.XGB.pkl'))
 					predicton= joblib.load(open(os.path.join("resources/.XGB.pkl"),"rb"))
 
 			# When model has successfully run, will print prediction
