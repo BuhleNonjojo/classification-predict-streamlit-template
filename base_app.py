@@ -671,10 +671,6 @@ def main():
 		if st.checkbox('Show raw data'): # data is hidden if box is unchecked
 			st.write(raw[['sentiment', 'message']]) # will write the df to the page
 
-    # Building out the "Explore The Data" page
-	if selection == "Explore The Data":
-		st.info("Exploring The Data")
-
 	# Building out the "Explore The Data" page
 	if selection == "Explore The Data":
 		st.info("Exploring The Data")
