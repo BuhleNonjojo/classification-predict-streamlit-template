@@ -610,13 +610,16 @@ def main():
 		
 	st.sidebar.title('App Navigation')
 
-	options = ["About Us", "Information", "Cautions", "Explore The Data", "Predictions", "Contact Us"]
-	selection = st.sidebar.radio("Options", options)
+	options = ["About Us", "Information", "Explore The Data","Model Explanantions","Predictions", "Contact Us"]
+	selection = st.sidebar.radio("Selectons", options)
 
 	# Building out the home company page
 	if selection == "About Us":
-		st.info('Welcome to That\'s Lead Engine (PTY) LTD ')
-		st.markdown("At Lead Engine, we're more than just a data management solution – we're your trusted partners in growth. We understand the challenges you face in today's ever-evolving business landscape. That's why we're dedicated to taking the burden of data management off your shoulders, freeing you to focus on what matters most: cultivating strong customer relationships and driving results.Our team of passionate experts doesn't just handle your data – they become an extension of your own. We meticulously ensure the accuracy and security of your information, allowing you to make data-driven decisions with confidence. Our expertise goes beyond data security; it's about unlocking the full potential of your customer data. We empower you to gain deeper insights into your customers' needs and behaviors, enabling you to personalize experiences and build lasting loyalty.Our ultimate goal isn't just to maximize your productivity or increase your profits in the short term. It's about future-proofing your business by providing the tools and insights you need to thrive in the ever-changing digital age. With Lead Engine as your partner, you'll be equipped to adapt to new trends, anticipate customer demands, and stay ahead of the competition.")
+		st.info('Welcome to Lead Engine (PTY) LTD ')
+		st.markdown("At Lead Engine, we're more than just a data management solution – we're your trusted partners in growth.")
+		st.markdown("We understand the challenges you face in today's ever-evolving business landscape. That's why we're dedicated to taking the burden of data management off your shoulders, freeing you to focus on what matters most: cultivating strong customer relationships and driving results.")
+		st.markdown("Our team of passionate experts doesn't just handle your data – they become an extension of your own. We meticulously ensure the accuracy and security of your information, allowing you to make data-driven decisions with confidence. Our expertise goes beyond data security; it's about unlocking the full potential of your customer data. We empower you to gain deeper insights into your customers' needs and behaviors, enabling you to personalize experiences and build lasting loyalty. Our ultimate goal isn't just to maximize your productivity or increase your profits in the short term. It's about future-proofing your business by providing the tools and insights you need to thrive in the ever-changing digital age.")
+		st.markdown("With Lead Engine as your partner, you'll be equipped to adapt to new trends, anticipate customer demands, and stay ahead of the competition.")
 		st.write('To access the codebase for this application, please visit the following GitHub repository:https://github.com/BuhleNonjojo/2309_Classification_NM3')
 
 		st.subheader('Meet the team')
@@ -662,25 +665,161 @@ def main():
 	if selection == "Information":
 		st.info("General Information")
 		# You can read a markdown file from supporting resources folder
-		st.markdown("Some information here")
-		st.markdown("We are Lead Engine")
-		st.image (IMG_6150.JPG)
+		st.markdown("We are Lead Engine"))
 
 		st.subheader("Raw Twitter data and label")
 		if st.checkbox('Show raw data'): # data is hidden if box is unchecked
 			st.write(raw[['sentiment', 'message']]) # will write the df to the page
 
-	# Building out the predication page
+    #Building out the "Explore The Data" page
+	if selection == "Explore the data":
+		options =  ['Dataset','Distribution of data per sentiment class','Proportion of retweets','Popular retweet handles per sentiment group in a word cloud', 'Popular hashtags in per sentiments group','Popular mentions per sentiment group']
+		selection = st.selectbox('What would like to explore?', options)
+
+		if selection == 'Dataset':
+			st.subheader('Overview of dataset:')
+			st.write(df_train.head(10))
+			st.info("The dataset consists of three columns namely: Sentiment, Tweet and Tweet ID")
+			st.markdown("The collection of this data was funded by a Canada Foundation for Innovation JELF Grant to Chris Bauch, University of Waterloo. The dataset aggregates tweets pertaining to climate change collected between Apr 27, 2015 and Feb 21, 2018. In total, 43,943 tweets were collected. Each tweet is labelled as one of 4 classes.")
+		if selection == 'Distribution of data per sentiment class':
+			st.subheader('Distribution of data per sentiment class')
+			st.image('resources/imgs/distribution_of_data_in_each_class.png')
+			st.markdown('From the figures above, we see that the dataset we are working with is very unbalanced. More than half of our dataset is people having pro-climate change sentiments, while only  8% of our data represents people with anti-climate change opinions. This might lead our models to become far better at identifying pro-climate change sentiment than anti-climate change sentiment, and we might need to consider balancing the data by resampling it.')
+
+		if selection == 'Proportion of retweets':
+			st.subheader('Proportion of retweets')
+			st.image('resources/imgs/proportion_of_retweets_hashtags_and_original_mentions.png')
+			st.markdown('We see that a staggering  60% of all our data is not original tweets, but retweets! This indicates that extracting more information from the retweets could prove integral to optimizing our model\'s predictive capabilities.')
+
+		if selection == 'Popular retweet handles per sentiment group in a word cloud':
+			st.subheader('Popular retweet handles per sentiment group in a word cloud')
+			st.image('resources/imgs/wordcloud_of_popular_retweet_handles_per_sentiment_group.png')
+			st.markdown('From the above, we see a clear difference between every sentiment with regards to who they are retweeting. This is great news, since it will provide an excellent feature within our model. Little overlap between categories is visible, which points to the fact that this feature could be a very strong predictor.')
+			st.markdown('We see that people with anti-climate change sentiments retweets from users like @realDonaldTrump and @SteveSGoddard the most. Overall retweets associated with anti-climate science opinions are frequently sourced from prominent Republican figures such as Donald Trump, along with individuals who identify as climate change deniers, like Steve Goddard.')
+			st.markdown('In contrast to this, people with pro-climate change views often retweet Democratic political figures such as @SenSanders and @KamalaHarris. Along with this, we see a trend to retweet comedians like @SethMacFarlane. The most retweeted individual for this category, is @StephenSchlegel.')
+			st.markdown('Retweets in the factual news category mostly contains handles of media news organizations, like @thehill, @CNN, @wasgingtonpost etc...')
+			st.markdown('People with neutral sentiments regarding climate change seems to not retweet overtly political figures. Instead, they retweet handles unknown to the writer like @CivilJustUs and @ULTRAVIOLENCE which no longer currently exist on twitter. The comedian @jay_zimmer is also a common retweeted incividual within this category.')
+
+		if selection == 'Popular hashtags in per sentiments group':
+			st.subheader('Popular hashtags in per sentiments group')
+			st.image('resources/imgs/popular_hashtags_per_sentiment_group_wordcloud.png')
+			st.markdown('From the visual above, we notice a few things:')
+			st.markdown('We see that a lot of hashtags are common in every sentiment category. Hashtags like #climatechange, #cllimate and #Trump is abundant regardless of which category is considered, and can therefore be removed from the list of hashtags since they won\'t contribute any meaningful insight to our models.')
+			st.markdown('Finally there is some hashtags that are more prominent within certain sentiment groups. Take #MAGA and #fakenews in the anti-climate change category, or #ImVotingBecause in the pro-climate change category. This indicates that some useful information can be extracted from this feature, and should remain within the model.')
+
+		if selection == 'Popular mentions per sentiment group':
+			st.subheader('Popular mentions per sentiment group')
+			st.image('resources/imgs/popular_hashtags_per_sentiment_group_wordcloud.png')
+			st.markdown('As was the case when we considered hashtags, we see that some handles get mentioned regardless of sentiment class. An example of this is @realDonaldTrump, which is prominent in every sentiment category, and as such should be removed before training our models, since it adds no value towards our data.')
+			st.markdown('Furthermore, there is some mentions that are more prominent in certain classes than others. Take @LeoDiCaprio for example, which features heavily in both pro-climate change as well as neutral towards climate change sentiment, but is not represented in the other two categories. This indicates that this feature could be beneficial for categorizing our data, and should remain within the dataset')
+
+	# Building out the "Model Explanations" page
+	if selection == "Model Explainations":
+		options = ['Logistic Regression','CatBoost Classifer','Decison Tree Classifier','Linear Support Vector Classifier','Random Forest Classifier','Multinomial Naives Bayes Classifier','Support Vector Classifier Gemma', 'Support Vector Classifier Poly','XGBoost Classifier']
+		selection = st.selectbox('Which model would you like to learn more about?',options)
+
+		if selection == "Logistic Regression":
+			#st.info('Explain the inner workings of Logistic Regression model')
+			st.markdown('Logistic regression is a classification algorithm used to predict the probability of a binary outcome based on one or more input features. It models the relationship between the input variables and the probability of the outcome belonging to a particular class. Logistic regression uses the logistic function (also known as the sigmoid function) to map the output of a linear combination of the input features to a value between 0 and 1, representing the probability of belonging to the positive class.')
+			st.markdown('In simpler terms, logistic regression aims to find the best-fitting S-shaped curve that separates the two classes. It estimates the coefficients (weights) of the input features through a process called maximum likelihood estimation, optimizing the parameters to maximize the likelihood of the observed data.')
+			st.markdown('Once trained, logistic regression can make predictions by calculating the probability of the positive class based on the input features. A threshold is then applied to determine the final predicted class.')
+			st.markdown('Logistic regression models are known for their simplicity and interpetability. Since they are more simplistic models, they are relatively quick to train and computationally efficient. They can also be expanded to handle multiclass classification as is the case for our data. This model does assume a linear relationship between the features and the log-odds of the outcome, however, which does not necessarily hold true in many cases. It is also sensitive to outliers and irrelevant features.')
+
+		if selection == "CatBoost Classifier":
+		    #st.info('Explain the inner workings of CatBoost model')
+			st.markdown('CatBoost is a machine learning model that tackles prediction tasks by combining multiple decision trees, a technique known as gradient boosting. Unlike some other models, CatBoost excels at handling data that includes categorical features, like text or zip codes.')
+			st.markdown('It achieves this by using a special technique called "Ordered Boosting" that analyzes these features directly, without needing to convert them into numerical codes first. This allows CatBoost to capture the relationships within the categories more effectively.')
+			st.markdown('Additionally, CatBoost incorporates regularization methods to prevent the model from overfitting to the training data, ensuring it performs well on unseen examples. ')
+            st.markdown('Overall, CatBoost''s strength in handling categorical data, combined with its decision tree ensemble approach and effective regularization, makes it a powerful tool for various machine learning applications.')
+	
+		if selection == "Decision Tree Classifier":
+		    #st.info('Explain the inner workings of Decison Tree model')
+			st.markdown('A decision tree model is a machine learning method that learns by creating a tree-like structure. This structure mimics a series of if-then-else questions, where each question splits the data into smaller and more specific groups.')
+			st.markdown('It starts at the root node, which represents the entire dataset. Here, the algorithm identifies the most important feature that best separates the data according to the target variable (like predicting whether an email is spam).')
+			st.markdown('The data is then split based on this feature, with branches leading to child nodes containing data that share a specific value of that feature.')
+            st.markdown('This process continues at each child node, using different features to further divide the data until it reaches leaf nodes. These leaf nodes contain the final predictions, representing the most likely outcome based on the features used throughout the tree.')
+		
+		if selection == "Linear Support Vector Classifier":
+			#st.info('Explain the inner workings of Linear Support Vector Machine model')
+			st.markdown('Linear Support Vector Classification (LinearSVC) is a variant of Support Vector Machines (SVMs) used for classification tasks. It employs a linear kernel to create a hyperplane in the high-dimensional feature space to separate different classes of data.')
+			st.markdown('Unlike other svms that might use various kernels, LinearSVC assumes a linear relationship between the features and the target variable. This model is robust and efficient in numerous applications, offering good performance even with less training data. However, its effectiveness can be sensitive to feature selection and requires careful preprocessing of the data.')
+			st.markdown('Key parameters include the C parameter, controlling the trade-off between a smooth decision boundary and classifying training points correctly. Despite its underlying assumption of a linear relationship, LinearSVC has proven to be versatile in its performance, with careful tuning and preprocessing.')
+            st.markdown('Lastly unlike ost machine learning models, linear support vector machines offer a visually intuitive geometric interpretation by finding a hyperplane that maximizes the separation between data points in different classes, making them particularly interesting for their interpretability, efficiency, and fast training speeds, even though their application is limited to data that can be separated linearly.')
+	
+		if selection == "Random Forest Classifier":
+			#st.info('Explain the inner workings of Random Forest model')
+			st.markdown('Random forest consists of a large number of individual decision trees that operate as an ensemble. Each individual tree in the random forest spits out a class prediction and the class with the most votes becomes our model’s prediction. The reason behind is that a large number of relatively uncorrelated models (decision trees) operating as a group will outperform any of the individual constituent models. The low correlation between models is the key, with trees protecting each other from their individual errors(as long as they do not deviate in the same direction)')
+			st.markdown('While some trees may be wrong, many other trees will be right, so as a group the trees are able to move in the correct direction.')
+			st.markdown('Random forest ensures that the behavior of each individual is not too correlated with the behavior of any other tree in the model by using bagging or bootstrap aggregation which allows each individual tree to randomly sample from the dataset with replacement resulting in different trees. Random forest also make use of feature randomness, in decision trees when it is time to split at each mode(a splitting point), we consider every possible feature and pick the one that produces the most separation between the observation in the left node vs those in the right node')
+			st.markdown('In contrast, each tree in the random forest can only pick from a random subset of features, forcing even more variation amongst the trees resulting in lower correlation and more diversification.Son in random forest, we end up with trees that are not only trained on different sets of data through bagging but also use different features to make decisions(compared to individual trees which consider every feature to make a decision).')
+
+		if selection == "Support Vector Gemma Classifier":
+			#st.info('Explain the inner workings of Suppourt Vector Gemma Classifier model')
+			st.markdown('Gemma, also known as the Support Vector Classifier (SVC), is a powerful algorithm for classification tasks. It operates by finding a hyperplane in high-dimensional space that best separates the data points of different classes with the maximum margin.')
+			st.markdown('For data that is not naturally separable in the original feature space, Gemma can employ a technique called the kernel trick. This trick essentially maps the data points to a higher-dimensional space where they become linearly separable. This allows Gemma to find an effective hyperplane even for complex datasets.')
+			st.markdown('Once the data is mapped (if necessary), Gemma identifies the data points closest to the hyperplane from each class. These points are called support vectors as they play a crucial role in defining the margin and the model''s decision boundary. The core principle of Gemma is to maximize the margin. This margin refers to the distance between the hyperplane and the closest support vectors from each class. By maximizing this margin, Gemma aims to create a robust decision boundary that can effectively generalize to unseen data.')
+			st.markdown('During prediction, Gemma takes a new data point and maps it to the same high-dimensional space (if applicable). The model then determines on which side of the hyperplane the new point lies, classifying it into the corresponding class based on the hyperplane''s orientation.')
+		
+		if selection == "Support Vector Poly Classifier":
+			#st.info('Explain the inner workings of Support Vector Poly Classifier model')
+			st.markdown('Support Vector Classifier (SVC) with a polynomial kernel, also known as SVC(poly), is a powerful tool for handling non-linearly separable data in classification tasks.SVC(poly) first takes the original data points and maps them into a higher-dimensional space using a specific polynomial function. This transformation allows the data points, which might not be linearly separable in the original space, to become linearly separable in the higher-dimensional space.')
+			st.markdown('Similar to a linear SVC, SVC(poly) then seeks to find a hyperplane within this higher-dimensional space that maximizes the margin between the data points belonging to different classes. This margin still represents the distance between the hyperplane and the closest data points from each class, called support vectors.')
+			st.markdown('Once the optimal hyperplane is found in the higher-dimensional space, the model effectively maps it back to the original feature space. This creates a non-linear decision boundary in the original space, allowing for classification of data points that couldn''t be separated linearly before.')
+			st.markdown(' Interestingly, SVC(poly) avoids explicitly performing the high-dimensional mapping for every data point during training and prediction. Instead, it utilizes a technique called the kernel trick. This trick allows the model to work directly with the data points in the original space while still leveraging the benefits of the higher-dimensional representation, making it computationally efficient even for large datasets. In essence, SVC(poly) overcomes the limitation of linear separation by transforming data into a higher-dimensional space, finding an optimal hyperplane there, and mapping it back to the original space to create a non-linear decision boundary for classification in various machine learning tasks.')
+		
+		if selection == "Multinomial Naives Bayes Classifier":
+			#st.info('Explain the inner workings of Multinominal Naives Bayes model')
+            st.markdown('Naive Bayes is a probabilistic classification model based on Bayes theorem, which calculates the probability of a class given the input features. It assumes that the features are conditionally independent, meaning that the presence of one feature does not affect the presence of another feature. Despite this simplifying assumption, Naive Bayes can be surprisingly effective in many real-world scenarios.')
+			st.markdown('Multinomial Naive Bayes is a variant of Naive Bayes that is specifically designed for classification tasks with discrete features. It is commonly used for text classification, where the input features are typically word frequencies or counts. Unlike Gaussian Naive Bayes, which assumes a Gaussian distribution for continuous features, Multinomial Naive Bayes assumes a multinomial distribution for discrete features.')
+			st.markdown('In Multinomial Naive Bayes, the model learns the probability distribution of each feature given the class label. It estimates the probabilities using the training data, where the feature values represent the frequencies or counts of each feature in the documents of each class. To predict the class of a new instance, the model calculates the likelihood of observing the given feature values for each class and combines it with the prior probability of the class using Bayes theorem. The class with the highest probability is chosen as the predicted class.')
+			st.markdown('The key difference between this model, and the Gaussian Naive Bayes is in the assumptions made about the data. Multinomial Naive Bayes assumes a multinomial distribution for discrete features, whereas Gaussian Naive Bayes assumes a Gaussian distribution for continuous features. Multinomial Naive Bayes is appropriate for discrete features, such as word counts, while Gaussian Naive Bayes is suitable for continuous or normally distributed features.This model is generally known to be efficient, even in large feature spaces. It also works well with unbalanced data, which is handy in our case. It is also able to handle multiclass classification problems, which our classification falls into.')
+	
+		if selection == "XGBoost Classifier":
+			#st.info('Explain the inner workings of XGBoost model')
+			st.markdown('XGBoost stands for Extreme Gradient Boosting and is a gradient boosting algorithm known for its high performance and accuracy in various machine learning tasks, including classification. It is an ensemble method that combines the predictions of multiple weak predictive models, usually decision trees, to create a strong predictive model. XGBoost builds an ensemble of decision trees sequentially, where each new tree is trained to correct the mistakes made by the previous trees.')
+			st.markdown('It uses a gradient-based optimization technique to minimize a specific loss function, such as logistic loss for classification tasks. The algorithm calculates gradients and hessians to update the model parameters, ensuring that each subsequent tree focuses on the areas where the previous trees performed poorly.')
+			st.markdown('Additionally, XGBoost incorporates several regularization techniques, such as shrinkage (learning rate) and tree pruning, to prevent overfitting and improve generalization. It also supports parallelization and distributed computing, making it efficient for training on large datasets.')
+			st.markdown('XGBoost boasts exceptional predictive performance and accuracy, and is robust to outliers in the data. It also supports feature importance estimation, allowing for better understanding of feature contributions. It does however require careful hyperparameter tuning for optimal performance. It is also computationally intensive, especially with a large number of trees and complex datasets.')
+
+	# Building out the Predication page
+			
 	if selection == "Prediction":
-		st.info("Prediction with ML Models today")
+		st.info("Prediction with ML Models")
+	    st.write('Predict the sentiment of each twitter using various models with each tweet falling into one of 4 categories: anti-man made climate change, neutral, pro-man made climate change and lastly, whether a tweet represent factual news!')
+	
+		pred_type = st.sidebar.selectbox("Predict sentiment of a single tweet or submit a csv for multiple tweets", ('Single Tweet', 'Multiple Tweets'))
+
+		if pred_type == "Single Tweet":
 		# Creating a text box for user input
 		tweet_text = st.text_area("Enter Text","Type Here")
+	
+		options = ["Logistic Regression Classifier"] #"XGBoost Classifier", "CatBoost Classfier",  " Multinomial Naive Bayes Classifier"
+		selection = st.selectbox("Choose Your Model", options)
 
 		if st.button("Classify"):
+		   vect_text = tweet_cv.transform([tweet_text]).toarray()
 			# Transforming user input with vectorizer
-			vect_text = tweet_cv.transform([tweet_text]).toarray()
+			# Process single tweet using our preprocess_tweet() function
+
+			# create dataframe for tweet
+			text = [tweet_text]
+			df_tweet = pd.DataFrame(text, columns=['message'])
+
+			processed_tweet = preprocess_tweet(df_tweet)
+				
+			# Create a dictionary for tweet prediction outputs
+			dictionary_tweets = {'[-1]': "A tweet refuting man-made climate change",
+                     			  '[0]': "A tweet neither supporting nor refuting the belief of man-made climate change",
+                     			  '[1]': "A pro climate change tweet",
+                     			  '[2]': "This tweet refers to factual news about climate change"}
 			# Load your .pkl file with the model of your choice + make predictions
 			# Try loading in multiple models to give the user a choice
+		   predictor = None
+		   X_pred = None
+		   if selection == "Logistic Regression Classifier":
+			#lr = pickle.load(open('\resources\LogisticRegression.pkl','rb'))
+			predictor = joblib.load(open(os.path.join("resources/LogisticRegression.pkl"),"rb"))
+			prediction = predictor.predict(vect_text)
 			predictor = joblib.load(open(os.path.join("resources/Logistic_regression.pkl"),"rb"))
 			prediction = predictor.predict(vect_text)
 			predictor = joblib.load(open(os.path.join("resources/linear_svc_model.pkl"),"rb"))
