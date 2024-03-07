@@ -43,7 +43,8 @@ nltk.download('stopwords')
 
 # Text Processing Libraries.
 
-from nltk.corpus import stopwords  
+from nltk.corpus import stopwords 
+stopwords_english = stopwords.words('english') 
 from nltk.stem import WordNetLemmatizer  
 from nltk import download as nltk_download  
 import regex  
