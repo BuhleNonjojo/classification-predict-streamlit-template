@@ -38,6 +38,8 @@ import seaborn as sns
 import pickle
 import re
 from PIL import Image
+import nltk
+nltk.download('stopwords')
 
 # Text Processing Libraries.
 
