@@ -23,31 +23,12 @@
 """
 # Streamlit dependencies
 
-import nltk
-nltk.download('stopwords')
 import streamlit as st
 import joblib,os
 import pickle
 import joblib
 import os
-# Import necessary libraries
-import streamlit as st
-import pandas as pd
-import joblib
-import pickle
-import os
-import nltk
 
-import streamlit as st
-import pandas as pd
-from preprocess import preprocess_tweet  # Assuming you have a preprocess_tweet function
-import joblib
-import pickle
-import os
-import nltk  # Add this line
-
-# Download NLTK stopwords data
-nltk.download('stopwords')
 
 
 # Data dependencies
@@ -800,91 +781,87 @@ def main():
 	
 		pred_type = st.sidebar.selectbox("Predict sentiment of a single tweet or submit a csv for multiple tweets", ('Single Tweet', 'Multiple Tweets'))
 
-# Import necessary libraries
-import streamlit as st
-import pandas as pd
-from preprocess import preprocess_tweet  # Assuming you have a preprocess_tweet function
-import joblib
-import pickle
-import os
+		if pred_type == "Single Tweet":
+			st.info("Prediction with ML Models")
+			# Creating a text box for user input
+			tweet_text = st.text_area("Enter tweet here","Type Here")
 
-# Your preprocess_tweet function should be defined before using it.
-# Import necessary libraries
-import streamlit as st
-import pandas as pd
-from preprocess import preprocess_tweet  # Assuming you have a preprocess_tweet function
-import joblib
-import pickle
-import os
-import sys
-sys.path.append('/path/to/your/preprocess_module_directory')
-# Your preprocess_tweet function should be defined before using it.
+			options = ["Logistic Regression Classifier","CatBoost Classfier", "Decision Tree Classifier","Linear Support Vector Classifier","Random Tree Forest Classifier","Support Vector Gemma Classifier", "Support Vector Poly Classifier", " Multinomial Naive Bayes Classifier", "XGBoost Classifier"] 
+			selection = st.selectbox("Choose Your Model", options)
+			# Transforming user input with vectorizer
+			vect_text = tweet_cv.transform([tweet_text]).toarray()
+			# Load your .pkl file with the model of your choice + make predictions
+			# Try loading in multiple models to give the user a choice
+			
+			if st.button("Classify Tweet"):
+				#process single tweet using our preprocess_tweet() functionn
 
+				# create dataframe for tweet
+				text = [tweet_text]
+				df_tweet = pd.DataFrame(text, columns=['message'])
 
-# Function to classify sentiment
-def classify_sentiment(tweet_text, selection, tweet_cv):
-    vect_text = tweet_cv.transform([tweet_text]).toarray()
+				processed_tweet = preprocess_tweet(df_tweet)
+				
+				# Create a dictionary for tweet prediction outputs
+				dictionary_tweets = {'[-1]': "A tweet refuting man-made climate change",
+                     				  '[0]': "A tweet neither supporting nor refuting the belief of man-made climate change",
+                     				  '[1]': "A pro climate change tweet",
+                     				  '[2]': "This tweet refers to factual news about climate change"}
 
-    models = {"Logistic Regression Classifier": "resources/Logistic_regression.pkl",
-        "CatBoost Classfier": "resources/.CB.pkl",
-        "Decision Tree Classifier": "resources/DT.pkl",
-        "Linear Support Vector Classifier": "resources/linear_svc_model.pkl",
-        "Random Tree Forest Classifier": "resources/.RFC.pkl",
-        "Support Vector Gemma Classifier": "resources/svc_gemma.pkl",
-        "Support Vector Poly Classifier": "resources/svc_poly.pkl",
-        "Multinomial Naive Bayes Classifier": "resources/multinomial_nb_model.pkl",
-        "XGBoost Classifier": "resources/.XGB.pkl"
-        # Your model paths
-    }
+				# Load your .pkl file with the model of your choice + make predictions
+				# Try loading in multiple models to give the user a choice
 
-    model_path = models[selection]
-    predictor = joblib.load(open(model_path, "rb"))
-    prediction = predictor.predict(vect_text)
+			
+				if selection == "Logistic Regression Classifier":
+					predictor= joblib.load(open(os.path.join("resources/Logistic_regression.pkl"),"rb"))
+					predicton= predictor.predict(vect_text)	
 
-    return prediction[0]
+				if selection == "CatBoost Classfier":
+					predictor= pickle.load(open("resources/.CB.pkl",'rb'))
+					predicton= joblib.load(open(os.path.join("resources/.CB.pkl"),"rb"))
 
-# Building out the Predictions page
-if selection == 'Predictions':
-    st.write('Predict the sentiment of each twitter using various models with each tweet falling into one of 4 categories: anti-man made climate change, neutral, pro-man made climate change and lastly, whether a tweet represents factual news!')
-    
-    pred_type = st.sidebar.selectbox("Predict sentiment of a single tweet or submit a csv for multiple tweets", ('Single Tweet', 'Multiple Tweets'))
+				if selection == "Decision Tree Classifier":
+					predictor = pickle.load(open("resources/DT.pkl",'rb'))
+					predicton= joblib.load(open(os.path.join("resources/DT.pkl"),"rb"))
 
-    if pred_type == "Single Tweet":
-        st.info("Prediction with ML Models")
-        # Creating a text box for user input
-        tweet_text = st.text_area("Enter tweet here", "Type Here")
+				if selection == "Linear Support Vector Classifier":
+					predictor= pickle.load(open("resources/linear_svc_model.pkl,'rb"))
+					predicton= joblib.load(open(os.path.join("resources/linear_svc_model.pkl"),"rb"))
 
-        options = ["Logistic Regression Classifier", "CatBoost Classfier", "Decision Tree Classifier",
-                   "Linear Support Vector Classifier", "Random Tree Forest Classifier", "Support Vector Gemma Classifier",
-                   "Support Vector Poly Classifier", "Multinomial Naive Bayes Classifier", "XGBoost Classifier"]
-        selection = st.selectbox("Choose Your Model", options)
+				if selection == "Random Tree Forest Classifier":
+					predictor= pickle.load(open("resources/.RFC.pkl",'rb'))
+					predicton= joblib.load(open(os.path.join("resources/.RFC.pkl"),"rb"))
 
-        if st.button("Classify Tweet"):
-            # Process single tweet (you may not need preprocessing if it's already handled in the model training)
-            processed_tweet = tweet_text
+				if selection == "Support Vector Gemma Classifier":
+					predictor = pickle.load(open("resources/svc_gemma.pkl",'rb'))
+					predicton= joblib.load(open(os.path.join("resources/svc_gemma.pkl"),"rb"))
 
-            # Create a dictionary for tweet prediction outputs
-            dictionary_tweets = {'-1': "A tweet refuting man-made climate change",
-                                  '0': "A tweet neither supporting nor refuting the belief of man-made climate change",
-                                  '1': "A pro climate change tweet",
-                                  '2': "This tweet refers to factual news about climate change"}
+				if selection == "Support Vector Poly Classifier":
+					predictor= pickle.load(open("resources/svc_poly.pkl",'rb'))
+					predicton= joblib.load(open(os.path.join("resources/svc_poly.pkl"),"rb"))
 
-            # Call the function to classify sentiment
-            result = classify_sentiment(processed_tweet, selection, tweet_cv)
+				if selection == "Multinomial Naive Bayes Classifier":
+					predictor = pickle.load(open("resources/multinomial_nb_model.pkl",'rb'))
+					predicton= joblib.load(open(os.path.join("resources/multinomial_nb_model.pkl"),"rb"))
 
-            # Display the predicted sentiment
-            st.write("Predicted Sentiment:", dictionary_tweets[str(result)])
+				if selection == "XGBoost Classifier":
+					predictor= pickle.load(open('resources/.XGB.pkl'))
+					predicton= joblib.load(open(os.path.join("resources/.XGB.pkl"),"rb"))
 
-# Building out the home company page
-if selection == "Contact Us":
-    st.info('Lead Engine (PTY) LTD ')
-    st.markdown("Contact Us:")
-    st.markdown("Website: www.leadengine.com.")
-    st.markdown("Telephone: +123-456-7890.")
-    st.markdown("Email: contact@leadengine.com")
-    st.markdown('Location : 123 Anywhere St., Any City, ST 12345')
-    st.write('We are just an email or phone call or visit away.')
+			# When model has successfully run, will print prediction
+			# You can use a dictionary or similar structure to make this output
+			# more human interpretable.
 
-# Required to let Streamlit instantiate our web app.
+	# Building out the home company page
+	if selection == "Contact Us":
+		st.info('Lead Engine (PTY) LTD ')
+		st.markdown("Contact Us:")
+		st.markdown("Website: www.leadengine.com.")
+		st.markdown("Telephone: +123-456-7890.")
+		st.markdown("Email: contact@leadengine.com")
+		st.markdown('Location : 123 Anywhere St., Any City, ST 12345')
+		st.write('We are just a email or phone call or vist away.')
+
+# Required to let Streamlit instantiate our web app.  
 if __name__ == '__main__':
-    main()
+	main()
