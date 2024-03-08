@@ -816,7 +816,8 @@ from preprocess import preprocess_tweet  # Assuming you have a preprocess_tweet 
 import joblib
 import pickle
 import os
-
+import sys
+sys.path.append('/path/to/your/preprocess_module_directory')
 # Your preprocess_tweet function should be defined before using it.
 
 
