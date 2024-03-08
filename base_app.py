@@ -790,6 +790,15 @@ import pickle
 import os
 
 # Your preprocess_tweet function should be defined before using it.
+# Import necessary libraries
+import streamlit as st
+import pandas as pd
+from preprocess import preprocess_tweet  # Assuming you have a preprocess_tweet function
+import joblib
+import pickle
+import os
+
+# Your preprocess_tweet function should be defined before using it.
 
 # Function to classify sentiment
 def classify_sentiment(tweet_text, selection, tweet_cv):
@@ -845,20 +854,16 @@ if selection == 'Predictions':
             # Display the predicted sentiment
             st.write("Predicted Sentiment:", dictionary_tweets[str(result)])
 
-			# When model has successfully run, will print prediction
-			# You can use a dictionary or similar structure to make this output
-			# more human interpretable.
+# Building out the home company page
+if selection == "Contact Us":
+    st.info('Lead Engine (PTY) LTD ')
+    st.markdown("Contact Us:")
+    st.markdown("Website: www.leadengine.com.")
+    st.markdown("Telephone: +123-456-7890.")
+    st.markdown("Email: contact@leadengine.com")
+    st.markdown('Location : 123 Anywhere St., Any City, ST 12345')
+    st.write('We are just an email or phone call or visit away.')
 
-	# Building out the home company page
-	if selection == "Contact Us":
-		st.info('Lead Engine (PTY) LTD ')
-		st.markdown("Contact Us:")
-		st.markdown("Website: www.leadengine.com.")
-		st.markdown("Telephone: +123-456-7890.")
-		st.markdown("Email: contact@leadengine.com")
-		st.markdown('Location : 123 Anywhere St., Any City, ST 12345')
-		st.write('We are just a email or phone call or vist away.')
-
-# Required to let Streamlit instantiate our web app.  
+# Required to let Streamlit instantiate our web app.
 if __name__ == '__main__':
-	main()
+    main()
