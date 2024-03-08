@@ -23,12 +23,24 @@
 """
 # Streamlit dependencies
 
+import nltk
+nltk.download('stopwords')
 import streamlit as st
 import joblib,os
 import pickle
 import joblib
 import os
 
+import streamlit as st
+import pandas as pd
+from preprocess import preprocess_tweet  # Assuming you have a preprocess_tweet function
+import joblib
+import pickle
+import os
+import nltk  # Add this line
+
+# Download NLTK stopwords data
+nltk.download('stopwords')
 
 
 # Data dependencies
