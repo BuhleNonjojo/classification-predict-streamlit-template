@@ -30,6 +30,13 @@ import joblib,os
 import pickle
 import joblib
 import os
+# Import necessary libraries
+import streamlit as st
+import pandas as pd
+import joblib
+import pickle
+import os
+import nltk
 
 import streamlit as st
 import pandas as pd
@@ -812,12 +819,12 @@ import os
 
 # Your preprocess_tweet function should be defined before using it.
 
+
 # Function to classify sentiment
 def classify_sentiment(tweet_text, selection, tweet_cv):
     vect_text = tweet_cv.transform([tweet_text]).toarray()
 
-    models = {
-        "Logistic Regression Classifier": "resources/Logistic_regression.pkl",
+    models = {"Logistic Regression Classifier": "resources/Logistic_regression.pkl",
         "CatBoost Classfier": "resources/.CB.pkl",
         "Decision Tree Classifier": "resources/DT.pkl",
         "Linear Support Vector Classifier": "resources/linear_svc_model.pkl",
@@ -826,6 +833,7 @@ def classify_sentiment(tweet_text, selection, tweet_cv):
         "Support Vector Poly Classifier": "resources/svc_poly.pkl",
         "Multinomial Naive Bayes Classifier": "resources/multinomial_nb_model.pkl",
         "XGBoost Classifier": "resources/.XGB.pkl"
+        # Your model paths
     }
 
     model_path = models[selection]
@@ -851,8 +859,8 @@ if selection == 'Predictions':
         selection = st.selectbox("Choose Your Model", options)
 
         if st.button("Classify Tweet"):
-            # Process single tweet using our preprocess_tweet() function
-            processed_tweet = preprocess_tweet(tweet_text)  # Replace with your actual preprocessing function
+            # Process single tweet (you may not need preprocessing if it's already handled in the model training)
+            processed_tweet = tweet_text
 
             # Create a dictionary for tweet prediction outputs
             dictionary_tweets = {'-1': "A tweet refuting man-made climate change",
